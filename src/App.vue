@@ -1,30 +1,35 @@
 <template>
   <div id="app">
-    <section class="main-content columns is-fullheight">
-      <Sidebar />
-      <router-view></router-view>
+    <section class="container">
+      <CategoryFilter @category="getCategory"/>
+      <Chart :categoryData="categoryData"/>
     </section>
   </div>
 </template>
 
 <script>
-import Sidebar from "./components/Sidebar.vue";
+import CategoryFilter from "./components/CategoryFilter.vue";
+import Chart from "./components/Chart.vue";
 
 export default {
   name: "app",
+  data(){
+    return {
+      categoryData: 'sales'
+    }
+  },
   components: {
-    Sidebar
+    CategoryFilter,
+    Chart
+  },
+  methods:{
+    getCategory(data){
+      this.categoryData = data
+    }
+
   }
 };
 </script>
 <style>
-.el-header {
-  background-color: #b3c0d1;
-  color: #333;
-  line-height: 60px;
-}
 
-.el-aside {
-  color: #333;
-}
 </style>
